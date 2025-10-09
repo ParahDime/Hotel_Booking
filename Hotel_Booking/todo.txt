@@ -1,0 +1,23 @@
+#pragma once
+room management
+	add, remove, list rooms
+	Have a max amount of rooms for the building
+
+Guest check in/out
+	When guest checks in, remove a room from set
+	When check out, add to the set
+	If no rooms, add guests to a queue
+
+Booking history
+	Store guest booking hist in linked list
+
+Undo stack
+	Keep stack of cancelled bookings
+	Can undo last cancellation easy
+
+Add files to hold rooms, guests, bookings
+
+
+Program should be basic command line menu
+Mimic inputs
+
