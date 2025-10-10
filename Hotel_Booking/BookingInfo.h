@@ -16,5 +16,9 @@ public:
 
 	int getID();
 
+	int setCost();
+	void getCost();
+
+
 };
 

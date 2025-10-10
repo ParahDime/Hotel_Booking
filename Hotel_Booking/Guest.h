@@ -8,6 +8,7 @@ private:
 	string name;
 	int callNum;
 	//history of booking
+	//stored in linked list
 
 public:
 	Guest();

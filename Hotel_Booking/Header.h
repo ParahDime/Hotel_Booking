@@ -1,11 +1,19 @@
 #include <stdlib.h>
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
+#include <chrono>
+#include <memory>
+#include <random>
 
 using std::string;
+using std::ifstream;
+using std::ofstream;
 using std::cin;
 using std::cout;
 using std::vector;
 using std::ws;
+using std::unique_ptr;
+using std::make_unique;
 #pragma once

@@ -6,9 +6,39 @@ private:
 	int ID;
 	float PPN; //price per night
 	bool occupied;
-	string amenities;
-	string type;
+	enum amenities {
+		Standard,
+		Enhanced,
+		Luxury
+	};
+	enum type {
+		Single,
+		Twin,
+		Double,
+		Executive
+	};
+
+	amenities Amenities;
+	type Type;
+
 public:
+	Room();
+	~Room();
+
+	void SetID();
+	int GetID();
+	
+	int GetPPN();
+	void SetPPN(int price, bool discount);
+
+	void setOccupied();
+	bool IsOccupied(bool occupied);
+
+	void setAmenities();
+	amenities getAmenities();
+
+	type getType();
+
 
 };
 
