@@ -53,10 +53,25 @@ void loginMenu(unique_ptr<int> &menuOption) {
 }
 
 void bookInOut() { //system for booking in, and booking out
+	//select option to book in or out
 
+	//book in 
+	// take guest details
+	// confirm room no
+	// edit list to update 
+	
+	//book out
+	//take guest info
+	//confirm room booking out (return)
 }
 
 void getPrice() { //get the price of a room
+	//input room
+	//input availability
+
+	//check to see if room available
+	//if yes, calc price
+	//potential to go to create booking
 
 }
 

@@ -11,13 +11,15 @@ private:
 	//stored in linked list
 
 public:
-	Guest();
+	Guest(istream& file);
 	~Guest();
 
+	void setName(string Name);
 	string getName();
+	void setNum(int number);
 	int getNum();
 	int getID();
-	void setID();
+	void setID(int idno);
 
 };
 

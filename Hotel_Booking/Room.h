@@ -22,10 +22,10 @@ private:
 	type Type;
 
 public:
-	Room();
+	Room(istream &file);
 	~Room();
 
-	void SetID();
+	void SetID(int id);
 	int GetID();
 	
 	int GetPPN();
@@ -38,6 +38,7 @@ public:
 	amenities getAmenities();
 
 	type getType();
+	type setType();
 
 
 };

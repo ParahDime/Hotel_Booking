@@ -10,6 +10,7 @@
 using std::string;
 using std::ifstream;
 using std::ofstream;
+using std::istream;
 using std::cin;
 using std::cout;
 using std::vector;
