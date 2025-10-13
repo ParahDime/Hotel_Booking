@@ -51,3 +51,8 @@ bool Room::IsOccupied(bool occupied)
 {
 	return occupied;
 }
+
+amenities Room::getAmenities()
+{
+	return Amenities;
+}

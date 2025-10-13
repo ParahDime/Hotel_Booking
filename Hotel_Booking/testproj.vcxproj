@@ -138,6 +138,9 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Bookings.txt" />
+    <Text Include="Guests.txt" />
+    <Text Include="Room.txt" />
     <Text Include="todo.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

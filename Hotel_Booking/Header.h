@@ -6,6 +6,7 @@
 #include <chrono>
 #include <memory>
 #include <random>
+#include <unordered_map>
 
 using std::string;
 using std::ifstream;
@@ -17,4 +18,5 @@ using std::vector;
 using std::ws;
 using std::unique_ptr;
 using std::make_unique;
+using std::unordered_map;
 #pragma once

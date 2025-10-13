@@ -51,5 +51,14 @@
     <Text Include="todo.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="Room.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Guests.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Bookings.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

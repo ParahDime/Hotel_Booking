@@ -50,19 +50,41 @@ void loginMenu(unique_ptr<int> &menuOption) {
 		}
 		
 	} while (open);
+
+	return;
 }
 
 void bookInOut() { //system for booking in, and booking out
-	//select option to book in or out
+	unique_ptr<bool> usingMenu = make_unique<bool>(true);
+	unique_ptr<int> subMenuOption = make_unique<int>();
 
-	//book in 
-	// take guest details
-	// confirm room no
-	// edit list to update 
-	
-	//book out
-	//take guest info
-	//confirm room booking out (return)
+	do {
+		cout << "Booking In / Booking Out";
+
+		cout << "Please select an option below";
+		cout << "[1] Book In \n[2] Book Out \n [0] Return to menu";
+		*subMenuOption >> ReturnInt(0, 2);
+
+		switch (*subMenuOption) {
+		case 1: //booking in
+			// take guest details
+			// confirm room no
+			// edit list to update 
+			break;
+		case 2: //booking out
+			//take guest info
+			//confirm room booking out (return)
+			break;
+		case 0:
+			*usingMenu = false;
+			break;
+		default:
+			*usingMenu = false;
+			break;
+		};
+	} while (*usingMenu);
+
+	return;
 }
 
 void getPrice() { //get the price of a room
@@ -118,15 +140,15 @@ int main()
 	const int kRoom = 30;
 	
 	vector<Room> vRooms = {};
-	//hash for guests by ID
-	//hash for booking ID
-	//hash for room ID
+	unordered_map < int, string > GuestIDs;//hash for guests by ID
+	unordered_map < int, string > BookingIDs;//hash for booking ID
+	unordered_map < int, string > RoomIDs;//hash for room ID
 
 	//queue for guests if rooms are full
 	//process check in/out in fifo stack
 
 	//set for room ids available
-	//can also be used for VIP guests
+	//can also be used for VIP guests / put into unordered map guest
 
 	//initialise classes
 
@@ -136,8 +158,11 @@ int main()
 	//guest info
 
 	//room info
+	*fileName = "Roominfo.txt";
 
 	//booking info
+	*fileName = "Bookinginfo.txt";
+
 
 	//program loop
 	while (programRunning) {
@@ -147,13 +172,13 @@ int main()
 		
 		switch (*menuOption) {
 		case 1: //book in / out
-			
+			bookInOut();
 			break;
 		case 2:	//get price
-			
+			getPrice();
 			break;
 		case 3: //create booking
-			
+			createBooking();
 			break;
 		case 4: //exit the system
 			programRunning = false;
