@@ -1,4 +1,5 @@
 #include "Guest.h"
+//#include "BookingInfo.h"
 
 Guest::Guest(istream& file)
 {

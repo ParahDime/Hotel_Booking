@@ -5,19 +5,31 @@ class BookingInfo
 {
 private:
 	int ID;
-	//guest ref
-	//room ref
-	//check in 
-	//check out
+	int guestRef;//guest ref
+	int roomRef;//room ref
+	string checkIn;//check in 
+	string checkOut;//check out
 	float totalCost;
 public:
 	BookingInfo();
 	~BookingInfo();
 
 	int getID();
+	void setID(int id);
 
-	int setCost();
-	void getCost();
+	int getGuest();
+	void setGuest(int guest);
+
+	int getRoom();
+	void setRoom(int room);
+
+	void setCheckIn(string in);
+	void setCheckOut(string out);
+	string getCheckIn();
+	string getCheckOut();
+
+	void setCost(int cost);
+	int getCost();
 
 
 };

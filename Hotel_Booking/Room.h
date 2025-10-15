@@ -34,11 +34,11 @@ public:
 	void setOccupied();
 	bool IsOccupied(bool occupied);
 
-	amenities setAmenities(amenities a);
+	void setAmenities(amenities a);
 	amenities getAmenities();
 
 	type getType();
-	type setType(type a);
+	void setType(type a);
 
 
 };

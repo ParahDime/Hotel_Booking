@@ -41,7 +41,7 @@ void loginMenu(unique_ptr<int> &menuOption) {
 	bool open = true;
 	do
 	{
-		cout << "Please choose an option from below";
+		cout << "Please choose an option from below\n";
 		cout << "[1] Book in / out \n[2] Get a price \n [3] Create a booking \n\n [0] Manager Login";
 
 		*menuOption = ReturnInt(0, 3);
