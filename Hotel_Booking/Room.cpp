@@ -52,7 +52,22 @@ bool Room::IsOccupied(bool occupied)
 	return occupied;
 }
 
-amenities Room::getAmenities()
+Room::amenities Room::setAmenities(amenities a)
+{
+	Amenities = a;
+}
+
+Room::amenities Room::getAmenities()
 {
 	return Amenities;
+}
+
+Room::type Room::getType()
+{
+	return Type;
+}
+
+Room::type Room::setType(type a)
+{
+	Type = a;
 }

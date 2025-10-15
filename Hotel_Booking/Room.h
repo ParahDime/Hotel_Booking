@@ -7,9 +7,9 @@ private:
 	float PPN; //price per night
 	bool occupied;
 	enum amenities {
-		Standard,
-		Enhanced,
-		Luxury
+		Standard = 1,
+		Enhanced = 2,
+		Luxury = 3
 	};
 	enum type {
 		Single,
@@ -34,11 +34,11 @@ public:
 	void setOccupied();
 	bool IsOccupied(bool occupied);
 
-	void setAmenities();
+	amenities setAmenities(amenities a);
 	amenities getAmenities();
 
 	type getType();
-	type setType();
+	type setType(type a);
 
 
 };
