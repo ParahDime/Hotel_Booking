@@ -53,10 +53,11 @@ void loginMenu(unique_ptr<int> &menuOption) {
 
 	return;
 }
-
-void bookInOut() { //system for booking in, and booking out
+//Function for booking in out of hotel room
+void bookInOut() { 
 	unique_ptr<bool> usingMenu = make_unique<bool>(true);
 	unique_ptr<int> subMenuOption = make_unique<int>();
+	unique_ptr<string> userName = make_unique<string>();
 
 	do {
 		cout << "Booking In / Booking Out";
@@ -67,18 +68,24 @@ void bookInOut() { //system for booking in, and booking out
 
 		switch (*subMenuOption) {
 		case 1: //booking in
-			// take guest details
+			cout << "[1] : Booking In";// take guest details'
+			cout << "Please input your name";
 			// confirm room no
 			// edit list to update 
 			break;
-		case 2: //booking out
-			//take guest info
+		case 2: 
+			cout << "[2] : Booking Out";//booking out
+			cout << "Please input your name";
+			cin >> *userName; //take guest info
+			
 			//confirm room booking out (return)
 			break;
 		case 0:
+			cout << "[0] : Return to Main Menu";
 			*usingMenu = false;
 			break;
 		default:
+			cout << "[0] : Return to Main menu";
 			*usingMenu = false;
 			break;
 		};
@@ -88,16 +95,45 @@ void bookInOut() { //system for booking in, and booking out
 }
 
 void getPrice() { //get the price of a room
+	unique_ptr<bool> usingMenu = make_unique<bool>(true);
+	unique_ptr<int> subMenuOption = make_unique<int>();
+
+	cout << "Please select an option\n";
+	cout << "[1] Check Availability\n [2] Check Price\n [0] Return to Menu";
+	*subMenuOption >> ReturnInt(0, 2);
+	do {
 	//input room
 	//input availability
 
 	//check to see if room available
 	//if yes, calc price
 	//potential to go to create booking
+		*usingMenu = false;
+	} while (*usingMenu);
 
 }
 
 void createBooking() { //create a booking system for the room (modified)
+	unique_ptr<char> alreadyGuest = make_unique<char>();
+	cout << "Create a new booking\n";
+	//ask if pre existing guest
+	cout << "Do you have a profile with us?\n y/n";
+	//check they are in the system
+
+	if (*alreadyGuest == 'y') //if yes continue
+	{
+
+	}
+	else if (*alreadyGuest == 'n') //if no, instead create a new account for them
+	{
+
+	}
+	
+	
+
+	//select room
+
+	//show dates available
 
 }
 
