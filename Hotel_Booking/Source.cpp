@@ -15,6 +15,18 @@ void Test() {
 	cout << "Function called";
 }
 
+char ReturnChar()
+{
+	unique_ptr<char> getChar = make_unique<char>();
+
+	do {
+		*getChar = getchar();
+	} while (*getChar != 'y' && *getChar != 'n');
+
+	return *getChar;
+}
+
+
 int ReturnInt(int low, int high)
 {
 	unique_ptr<int> getInt = make_unique<int>();
@@ -115,13 +127,15 @@ void getPrice() { //get the price of a room
 
 void createBooking() { //create a booking system for the room (modified)
 	unique_ptr<char> alreadyGuest = make_unique<char>();
+	unique_ptr<string> name = make_unique<string>();
 	cout << "Create a new booking\n";
 	//ask if pre existing guest
 	cout << "Do you have a profile with us?\n y/n";
 	//check they are in the system
-
+	*alreadyGuest = ReturnChar();
 	if (*alreadyGuest == 'y') //if yes continue
 	{
+		cout << "Please enter your name\n";
 
 	}
 	else if (*alreadyGuest == 'n') //if no, instead create a new account for them
@@ -156,7 +170,10 @@ template <class S, class T> bool verifyFile(S& file, T& fileName) { //verify tha
 }
 
 void inputGuest(ifstream& file, vector<Guest*>& vGuest) { //read a file into the system
-
+	Guest temp;
+	while (file >> temp) { // uses overloaded >>
+		vGuest.push_back(new Guest(temp));
+	}
 }
 
 void inputRoom(ifstream& file, vector<Room*>& vRoom) {

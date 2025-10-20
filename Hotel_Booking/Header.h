@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
+#include <string>
+#include <sstream>
 #include <fstream>
 #include <vector>
 #include <algorithm>
@@ -19,4 +21,5 @@ using std::ws;
 using std::unique_ptr;
 using std::make_unique;
 using std::unordered_map;
+using std::getline;
 #pragma once

@@ -21,5 +21,7 @@ public:
 	int getID();
 	void setID(int idno);
 
+	friend std::istream& operator>>(std::istream& in, Guest& g);
+
 };
 
