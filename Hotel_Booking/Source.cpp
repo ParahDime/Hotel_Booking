@@ -192,7 +192,10 @@ int main()
 	unique_ptr<int> menuOption = make_unique<int>();
 	const int kRoom = 30;
 	
-	vector<Room> vRooms = {};
+	vector<Guest*> vGuest = {};
+	vector<Room*> vRoom = {};
+	vector<BookingInfo*> vBookings = {};
+
 	unordered_map < int, string > GuestIDs;//hash for guests by ID
 	unordered_map < int, string > BookingIDs;//hash for booking ID
 	unordered_map < int, string > RoomIDs;//hash for room ID
@@ -207,15 +210,43 @@ int main()
 
 	//read in files
 	unique_ptr<string> fileName = make_unique<string>();
-	*fileName = "Guest.txt";
+	*fileName = "Guests.txt";
 	//guest info
+	ifstream nameFile(*fileName);
+	if (verifyFile(nameFile, fileName))
+	{
+		
+	}
+	else
+	{
+		return 0;
+	}
+	nameFile.close();
 
 	//room info
 	*fileName = "Roominfo.txt";
-
+	ifstream roomFile(*fileName);
+	if (verifyFile(nameFile, fileName))
+	{
+		//inputRoom(roomFile, RoomIDs);
+	}
+	else
+	{
+		return 0;
+	}
+	roomFile.close();
 	//booking info
 	*fileName = "Bookinginfo.txt";
+	ifstream bookingFile(*fileName);
+	if (verifyFile(nameFile, fileName))
+	{
 
+	}
+	else
+	{
+		return 0;
+	}
+	bookingFile.close();
 
 	//program loop
 	while (programRunning) {
@@ -235,12 +266,12 @@ int main()
 			break;
 		case 4: //exit the system
 			programRunning = false;
-			break;
-
+			return 0;
 		case 0: //manager login
 			break;
 		default:
 			programRunning = false;
+			break;
 		}
 	}
 	return 0;

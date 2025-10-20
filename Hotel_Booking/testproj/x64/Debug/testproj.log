@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(79,18): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(115,17): warning C4552: '>>': result of expression not used
+  testproj.vcxproj -> C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\x64\Debug\testproj.exe

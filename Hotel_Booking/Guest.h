@@ -11,6 +11,7 @@ private:
 	//stored in linked list
 
 public:
+	Guest() : ID(0), name(""), callNum(0) {};
 	Guest(istream& file);
 	~Guest();
 
