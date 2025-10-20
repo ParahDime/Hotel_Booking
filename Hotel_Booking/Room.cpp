@@ -2,7 +2,7 @@
 
 Room::Room(istream& file)
 {
-	//file >> *this;
+	file >> *this;
 }
 
 Room::~Room()
@@ -70,4 +70,27 @@ Room::type Room::getType()
 void::Room::setType(type a)
 {
 	Type = a;
+}
+
+std::istream& operator>>(std::istream& in, Room& r) {
+	std::unique_ptr<std::string> line = make_unique<string>();
+	if (getline(in, *line)) {
+		std::stringstream stream(*line);
+		std::unique_ptr<std::string> idStr = make_unique<string>();
+		std::unique_ptr<string> ppnFlt = make_unique<string>();
+		std::unique_ptr<string> occuBl = make_unique<string>();
+		std::unique_ptr <string> enu1 = make_unique<string>();
+		std::unique_ptr<string> enu2 = make_unique<string>();
+
+		getline(stream, *idStr, ',');
+		getline(stream, *ppnFlt, ',');
+		getline(stream, *occuBl, ',');
+		getline(stream, *enu1, ',');
+		getline(stream, *enu2, ',');
+
+		r.ID = std::stoi(*idStr);
+
+	}
+
+	return in;
 }

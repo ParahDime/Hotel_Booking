@@ -12,16 +12,18 @@ private:
 		Luxury = 3
 	};
 	enum type {
-		Single,
-		Twin,
-		Double,
-		Executive
+		Single = 1,
+		Twin = 2,
+		Double = 3,
+		Executive = 4
 	};
 
 	amenities Amenities;
 	type Type;
 
 public:
+	//Guest() : ID(0), name(""), callNum(0) {};
+	Room() : ID(0), PPN(0.0), occupied(false), Amenities(Standard), Type(Single) {};
 	Room(istream &file);
 	~Room();
 
@@ -40,6 +42,6 @@ public:
 	type getType();
 	void setType(type a);
 
-
+	friend std::istream& operator>>(std::istream& in, Room& r);
 };
 

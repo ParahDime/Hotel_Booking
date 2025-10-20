@@ -180,7 +180,7 @@ void inputRoom(ifstream& file, vector<Room*>& vRoom) {
 
 }
 
-void inputBookings(ifstream& file, vector<BookingInfo*>& vBookings()) {
+void inputBookings(ifstream& file, vector<BookingInfo*>& vBookings) {
 
 }
 
@@ -241,7 +241,7 @@ int main()
 	ifstream bookingFile(*fileName);
 	if (verifyFile(bookingFile, fileName))
 	{
-
+		inputBookings(bookingFile, vBookings);
 	}
 	else
 	{
