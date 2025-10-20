@@ -215,7 +215,8 @@ int main()
 	ifstream nameFile(*fileName);
 	if (verifyFile(nameFile, fileName))
 	{
-		
+		inputGuest(nameFile, vGuest);
+		Test();
 	}
 	else
 	{
@@ -224,11 +225,11 @@ int main()
 	nameFile.close();
 
 	//room info
-	*fileName = "Roominfo.txt";
+	*fileName = "Room.txt";
 	ifstream roomFile(*fileName);
-	if (verifyFile(nameFile, fileName))
+	if (verifyFile(roomFile, fileName))
 	{
-		//inputRoom(roomFile, RoomIDs);
+		inputRoom(roomFile, vRoom);
 	}
 	else
 	{
@@ -236,9 +237,9 @@ int main()
 	}
 	roomFile.close();
 	//booking info
-	*fileName = "Bookinginfo.txt";
+	*fileName = "Bookings.txt";
 	ifstream bookingFile(*fileName);
-	if (verifyFile(nameFile, fileName))
+	if (verifyFile(bookingFile, fileName))
 	{
 
 	}
