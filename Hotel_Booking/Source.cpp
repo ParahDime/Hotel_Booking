@@ -11,10 +11,13 @@
 
 //search for guests via hashmap
 
+//standard test function
 void Test() {
 	cout << "Function called";
 }
-
+///
+/// Used to return specified characters
+///
 char ReturnChar()
 {
 	unique_ptr<char> getChar = make_unique<char>();
@@ -39,15 +42,31 @@ int ReturnInt(int low, int high)
 	return *getInt;
 }
 
-//used for a stylised welcome message
+///
+///	Functions for program maintenance
+/// 
+
+
 void welcomeMessage() {
 	//stylised welcome message
+	std::cout << "\033[1;33m"; // bright yellow
+	std::cout << "+---------------------------------------+\n";
+	std::cout << "|        WELCOME TO HOTEL PARADISE      |\n";
+	std::cout << "+---------------------------------------+\n";
+	std::cout << "\033[0m"; // reset color
 }
 
-void createAcc()
+void createAcc() //create a user account
 {
+	//first name
 
+	//last name
+
+	//number to contact them
+
+	//also assign ID number to them (can be rand)
 }
+
 //handles initial menu login
 void loginMenu(unique_ptr<int> &menuOption) {
 	welcomeMessage();
@@ -82,12 +101,30 @@ void bookInOut() {
 		cout << "[1] Book In \n[2] Book Out \n [0] Return to menu";
 		*subMenuOption >> ReturnInt(0, 2);
 
+		//get user info (do we have their deets)
+
+		//if acc proceed
+
+		//else send to get deets
+
+		//loop while not logged in
+
 		switch (*subMenuOption) {
 		case 1: //booking in
 			cout << "[1] : Booking In";// take guest details'
-			cout << "Please input your name";
-			// confirm room no
-			// edit list to update 
+			//ask for room type they want
+			cout << "What style of room are you looking for?";
+			cout << "\nSingle\nTwin\nDouble\nExecutive";
+
+			//ask how long
+			cout << "How many nights are you looking to stay? Maximum: 7";
+			//check against list
+
+			//give details and 
+			//Room number, pricetotal, price per night
+
+			//confirmation
+
 			break;
 		case 2: 
 			cout << "[2] : Booking Out";//booking out
@@ -187,7 +224,10 @@ template <class S, class T> bool verifyFile(S& file, T& fileName) { //verify tha
 	}
 }
 
-void inputGuest(ifstream& file, vector<Guest*>& vGuest) { //read a file into the system
+///
+/// Input files into the program
+/// 
+void inputGuest(ifstream& file, vector<Guest*>& vGuest) { 
 	Guest temp;
 	while (file >> temp) { 
 		vGuest.push_back(new Guest(temp));
