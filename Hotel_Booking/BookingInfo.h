@@ -11,7 +11,8 @@ private:
 	string checkOut;//check out
 	float totalCost;
 public:
-	BookingInfo();
+	BookingInfo() : ID(0), guestRef(0), roomRef(0), checkIn("01-01-1900"), checkOut("01-01-2000"), totalCost(10.00) {};
+	BookingInfo(istream& file);
 	~BookingInfo();
 
 	int getID();
@@ -31,6 +32,6 @@ public:
 	void setCost(int cost);
 	int getCost();
 
-
+	friend std::istream& operator>>(std::istream& in, BookingInfo& b);
 };
 

@@ -89,7 +89,12 @@ std::istream& operator>>(std::istream& in, Room& r) {
 		getline(stream, *enu2, ',');
 
 		r.ID = std::stoi(*idStr);
-
+		r.PPN = std::stof(*ppnFlt);
+		r.occupied = (std::stoi(*occuBl) != 0);
+		int amenityVal = std::stoi(*enu1);
+		r.Amenities = static_cast<Room::amenities>(amenityVal);
+		int TypeVal = std::stoi(*enu2);
+		r.Type = static_cast<Room::type>(TypeVal);
 	}
 
 	return in;

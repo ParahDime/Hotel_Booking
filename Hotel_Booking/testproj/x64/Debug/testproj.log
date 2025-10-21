@@ -1,4 +1,7 @@
-﻿  Source.cpp
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(79,18): warning C4552: '>>': result of expression not used
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(115,17): warning C4552: '>>': result of expression not used
+﻿  Guest.cpp
+  Room.cpp
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Room.cpp(24,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Room.cpp(31,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Room.cpp(34,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
   testproj.vcxproj -> C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\x64\Debug\testproj.exe

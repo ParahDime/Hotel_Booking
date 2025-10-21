@@ -1,8 +1,8 @@
 #include "BookingInfo.h"
 
-BookingInfo::BookingInfo()
+BookingInfo::BookingInfo(istream& file)
 {
-
+	file >> *this;
 }
 
 BookingInfo::~BookingInfo()
@@ -67,4 +67,28 @@ void BookingInfo::setCost(int cost)
 int BookingInfo::getCost()
 {
 	return totalCost;
+}
+
+std::istream& operator>>(std::istream& in, BookingInfo& b) {
+	std::unique_ptr<std::string> line = make_unique<string>();
+	if (getline(in, *line)) {
+		std::stringstream stream(*line);
+		string idStr, gRefStr, rRefStr, cInStr, cOutStr, tCostStr;
+
+
+		getline(stream, idStr, ',');
+		getline(stream, gRefStr, ',');
+		getline(stream, rRefStr, ',');
+		getline(stream, cInStr, ',');
+		getline(stream, cOutStr, ',');
+		getline(stream, tCostStr);
+
+		b.ID = std::stoi(idStr);
+		b.guestRef = std::stoi(gRefStr);
+		b.roomRef = std::stoi(rRefStr);
+		b.checkIn = cInStr;
+		b.checkOut = cOutStr;
+		b.totalCost = std::stof(tCostStr);
+	}
+	return in;
 }

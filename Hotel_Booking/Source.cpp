@@ -44,6 +44,10 @@ void welcomeMessage() {
 	//stylised welcome message
 }
 
+void createAcc()
+{
+
+}
 //handles initial menu login
 void loginMenu(unique_ptr<int> &menuOption) {
 	welcomeMessage();
@@ -54,7 +58,7 @@ void loginMenu(unique_ptr<int> &menuOption) {
 	do
 	{
 		cout << "Please choose an option from below\n";
-		cout << "[1] Book in / out \n[2] Get a price \n [3] Create a booking \n\n [0] Manager Login";
+		cout << "[1] Book in / out \n[2] Get a price \n [3] Create a booking \n\n [0] Quit";
 
 		*menuOption = ReturnInt(0, 3);
 		if (*menuOption >= 0 || *menuOption <= 3) {
@@ -128,19 +132,37 @@ void getPrice() { //get the price of a room
 void createBooking() { //create a booking system for the room (modified)
 	unique_ptr<char> alreadyGuest = make_unique<char>();
 	unique_ptr<string> name = make_unique<string>();
+	char inputOption = ' ';
+	string username;
+
+
 	cout << "Create a new booking\n";
 	//ask if pre existing guest
 	cout << "Do you have a profile with us?\n y/n";
+
 	//check they are in the system
 	*alreadyGuest = ReturnChar();
 	if (*alreadyGuest == 'y') //if yes continue
 	{
 		cout << "Please enter your name\n";
 
+		//check if account is on the system
+
 	}
 	else if (*alreadyGuest == 'n') //if no, instead create a new account for them
 	{
+		cout << "Sorry, we couldn't find your profile. Would you like to set one up?";
+		inputOption >> ReturnChar();
 
+		if (inputOption == 'y') //if y, function set up account
+		{
+			createAcc();
+		}
+		else {//if n, tell them can't create booking, return to home menu
+			cout << "Sorry, unless you have an account, you can't create a booking.\nPlease press any button to return to the menu";
+			cin;
+			return;
+		}
 	}
 	
 	
@@ -148,10 +170,6 @@ void createBooking() { //create a booking system for the room (modified)
 	//select room
 
 	//show dates available
-
-}
-
-void managerMenu() { //manager menu, helping to handle data
 
 }
 
@@ -171,17 +189,23 @@ template <class S, class T> bool verifyFile(S& file, T& fileName) { //verify tha
 
 void inputGuest(ifstream& file, vector<Guest*>& vGuest) { //read a file into the system
 	Guest temp;
-	while (file >> temp) { // uses overloaded >>
+	while (file >> temp) { 
 		vGuest.push_back(new Guest(temp));
 	}
 }
 
 void inputRoom(ifstream& file, vector<Room*>& vRoom) {
-
+	Room temp;
+	while (file >> temp) {
+		vRoom.push_back(new Room(temp));
+	}
 }
 
 void inputBookings(ifstream& file, vector<BookingInfo*>& vBookings) {
-
+	BookingInfo temp;
+	while (file >> temp) {
+		vBookings.push_back(new BookingInfo(temp));
+	}
 }
 
 int main()
@@ -251,7 +275,6 @@ int main()
 
 	//program loop
 	while (programRunning) {
-		cout << "Welcome to hotel paradise";
 		//welcome message
 		loginMenu(menuOption);
 		
@@ -265,11 +288,9 @@ int main()
 		case 3: //create booking
 			createBooking();
 			break;
-		case 4: //exit the system
+		case 0: //exit the system
 			programRunning = false;
 			return 0;
-		case 0: //manager login
-			break;
 		default:
 			programRunning = false;
 			break;
