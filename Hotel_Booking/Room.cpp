@@ -57,9 +57,15 @@ void  Room::setAmenities(amenities a)
 	Amenities = a;
 }
 
-Room::amenities Room::getAmenities() const
+string Room::getAmenities() const
 {
-	return Amenities;
+	switch(Amenities) {
+        case Single: return "Single";
+		case Double: return "Double";
+		case Twin: return "Twin";
+		case Executive:   return "Executive";
+		default:       return "Unknown";
+	}
 }
 
 Room::type Room::getType() const

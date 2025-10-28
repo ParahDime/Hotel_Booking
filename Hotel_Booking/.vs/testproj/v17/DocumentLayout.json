@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{6B54AD3B-FCAD-4A1B-8E73-AEFE676ED24F}|testproj.vcxproj|solutionrelative:Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6B54AD3B-FCAD-4A1B-8E73-AEFE676ED24F}|testproj.vcxproj|C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\Room.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6B54AD3B-FCAD-4A1B-8E73-AEFE676ED24F}|testproj.vcxproj|solutionrelative:Room.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B54AD3B-FCAD-4A1B-8E73-AEFE676ED24F}|testproj.vcxproj|C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\Room.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6B54AD3B-FCAD-4A1B-8E73-AEFE676ED24F}|testproj.vcxproj|solutionrelative:Room.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6B54AD3B-FCAD-4A1B-8E73-AEFE676ED24F}|testproj.vcxproj|C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\BookingInfo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6B54AD3B-FCAD-4A1B-8E73-AEFE676ED24F}|testproj.vcxproj|solutionrelative:BookingInfo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -25,11 +33,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "Room.h",
+              "DocumentMoniker": "C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\Room.h",
+              "RelativeDocumentMoniker": "Room.h",
+              "ToolTip": "C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\Room.h",
+              "RelativeToolTip": "Room.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-10-28T21:15:36.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Room.cpp",
+              "DocumentMoniker": "C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\Room.cpp",
+              "RelativeDocumentMoniker": "Room.cpp",
+              "ToolTip": "C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\Room.cpp",
+              "RelativeToolTip": "Room.cpp",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-28T21:11:42.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "string",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\string",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\string",
@@ -37,12 +71,11 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\string",
               "ViewState": "AgIAALoAAAAAAAAAAAAIwM0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-10-28T19:55:43.267Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-28T19:55:43.267Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "BookingInfo.h",
               "DocumentMoniker": "C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\BookingInfo.h",
               "RelativeDocumentMoniker": "BookingInfo.h",
@@ -55,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "BookingInfo.cpp",
               "DocumentMoniker": "C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\BookingInfo.cpp",
               "RelativeDocumentMoniker": "BookingInfo.cpp",
@@ -74,7 +107,7 @@
               "RelativeDocumentMoniker": "Source.cpp",
               "ToolTip": "C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\Source.cpp",
               "RelativeToolTip": "Source.cpp",
-              "ViewState": "AgIAABsBAAAAAAAAAAAowB8BAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAIwBAAAAAAAAAAAAAKUBAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-15T17:30:39.981Z",
               "EditorCaption": ""

@@ -174,7 +174,7 @@ void getPrice() { //get the price of a room
 
 }
 
-void createBooking() { //create a booking system for the room (modified)
+void createBooking(vector<Room*>& vRoom) { //create a booking system for the room (modified)
 	unique_ptr<char> alreadyGuest = make_unique<char>();
 	unique_ptr<string> name = make_unique<string>();
 	char inputOption = ' ';
@@ -196,7 +196,7 @@ void createBooking() { //create a booking system for the room (modified)
 	}
 	else if (*alreadyGuest == 'n') //if no, instead create a new account for them
 	{
-		cout << "Sorry, we couldn't find your profile. Would you like to set one up?";
+		cout << "Sorry, we couldn't find your profile. Would you like to set one up? y/n";
 		inputOption >> ReturnChar();
 
 		if (inputOption == 'y') //if y, function set up account
@@ -209,8 +209,52 @@ void createBooking() { //create a booking system for the room (modified)
 			return;
 		}
 	}
+	else {
+		cout << "Invalid option";
+	}
 	
-	
+	cout << "\n=== Available Rooms ===\n";
+	bool foundAny = false;
+
+	for (Room* r : vRoom) {
+		if (r && !r->IsOccupied()) {
+			cout << "Room ID: " << r->GetID()
+				<< " | Type: " << r->getAmenities()
+				<< " | Price per night: $" << r->GetPPN() << "\n";
+			foundAny = true;
+		}
+	}
+
+	if (!foundAny) {
+		cout << "Sorry, no rooms are available right now.\n";
+		return;
+	}
+
+	int chosenID;
+	cout << "\nEnter the Room ID you'd like to book: ";
+	cin >> chosenID;
+
+	Room* chosenRoom = nullptr;
+	for (Room* r : vRoom) {
+		if (r && r->GetID() == chosenID && !r->IsOccupied()) {
+			chosenRoom = r;
+			break;
+		}
+	}
+
+	if (!chosenRoom) {
+		cout << "Invalid or occupied room ID. Please try again.\n";
+		return;
+	}
+
+	chosenRoom->setOccupied();
+
+	cout << "\nBooking confirmed for Room " << chosenRoom->GetID() << ".\n";
+	cout << "Enjoy your stay at Hotel Paradise!\n";
+
+
+
+
 
 	//select room
 
@@ -286,7 +330,7 @@ void updateFiles(vector<Guest*>& vGuest, vector<Room*>& vRoom, vector<BookingInf
 				file << r->GetID() << ","
 					<< r->GetPPN() << ","
 					<< r->IsOccupied() << ","
-					<< static_cast<int>(r->getAmenities()) << ","
+					<< r->getAmenities() << ","
 					<< static_cast<int>(r->getType()) << "\n";
 			}
 		}
@@ -392,7 +436,7 @@ int main()
 			getPrice();
 			break;
 		case 3: //create booking
-			createBooking();
+			createBooking(vRoom);
 			break;
 		case 0: //exit the system
 			programRunning = false;

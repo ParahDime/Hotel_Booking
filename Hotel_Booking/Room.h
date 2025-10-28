@@ -37,7 +37,7 @@ public:
 	bool IsOccupied() const;
 
 	void setAmenities(amenities a);
-	amenities getAmenities() const;
+	string getAmenities() const;
 
 	type getType() const;
 	void setType(type a);
