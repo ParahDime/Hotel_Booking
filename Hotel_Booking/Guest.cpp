@@ -15,7 +15,7 @@ void Guest::setName(string Name)
 {
 	name = Name;
 }
-string Guest::getName()
+string Guest::getName() const 
 {
 	return name;
 }
@@ -25,12 +25,12 @@ void Guest::setNum(int number)
 	callNum = number;
 }
 
-int Guest::getNum()
+int Guest::getNum() const
 {
 	return callNum;
 }
 
-int Guest::getID()
+int Guest::getID() const
 {
 	return ID;
 }

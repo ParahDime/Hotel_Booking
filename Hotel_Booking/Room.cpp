@@ -14,12 +14,12 @@ void Room::SetID(int id)
 	ID = id;
 }
 
-int Room::GetID()
+int Room::GetID() const
 {
 	return ID;
 }
 
-int Room::GetPPN()
+int Room::GetPPN() const
 {
 	return PPN;
 }
@@ -47,7 +47,7 @@ void Room::setOccupied()
 	}
 }
 
-bool Room::IsOccupied(bool occupied)
+bool Room::IsOccupied() const
 {
 	return occupied;
 }
@@ -57,12 +57,12 @@ void  Room::setAmenities(amenities a)
 	Amenities = a;
 }
 
-Room::amenities Room::getAmenities()
+Room::amenities Room::getAmenities() const
 {
 	return Amenities;
 }
 
-Room::type Room::getType()
+Room::type Room::getType() const
 {
 	return Type;
 }

@@ -1,10 +1,7 @@
-﻿  Room.cpp
-  Source.cpp
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Room.cpp(24,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Room.cpp(31,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Room.cpp(34,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(95,18): warning C4552: '>>': result of expression not used
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(131,17): warning C4552: '>>': result of expression not used
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(167,15): warning C4552: '>>': result of expression not used
-  Generating Code...
+﻿  Source.cpp
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(105,18): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(124,14): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(96,7): warning C4101: 'confirmChar': unreferenced local variable
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(164,17): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(200,15): warning C4552: '>>': result of expression not used
   testproj.vcxproj -> C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\x64\Debug\testproj.exe

@@ -28,18 +28,18 @@ public:
 	~Room();
 
 	void SetID(int id);
-	int GetID();
+	int GetID() const;
 	
-	int GetPPN();
+	int GetPPN() const;
 	void SetPPN(int price, bool discount);
 
 	void setOccupied();
-	bool IsOccupied(bool occupied);
+	bool IsOccupied() const;
 
 	void setAmenities(amenities a);
-	amenities getAmenities();
+	amenities getAmenities() const;
 
-	type getType();
+	type getType() const;
 	void setType(type a);
 
 	friend std::istream& operator>>(std::istream& in, Room& r);

@@ -93,6 +93,9 @@ void bookInOut() {
 	unique_ptr<bool> usingMenu = make_unique<bool>(true);
 	unique_ptr<int> subMenuOption = make_unique<int>();
 	unique_ptr<string> userName = make_unique<string>();
+	char confirmChar;
+
+	int nightStay = 0;
 
 	do {
 		cout << "Booking In / Booking Out";
@@ -118,10 +121,15 @@ void bookInOut() {
 
 			//ask how long
 			cout << "How many nights are you looking to stay? Maximum: 7";
+			nightStay >> ReturnInt(1, 7);
 			//check against list
 
 			//give details and 
 			//Room number, pricetotal, price per night
+
+			cout << "";
+			cout << "Total Stay: " << "8" << "days \nPrice per night £" << "" << "\nTotal Price £" << "";
+			cout << "Confirm? y/n\n";
 
 			//confirmation
 
@@ -248,6 +256,64 @@ void inputBookings(ifstream& file, vector<BookingInfo*>& vBookings) {
 	}
 }
 
+void updateFiles(vector<Guest*>& vGuest, vector<Room*>& vRoom, vector<BookingInfo*>& vBookings)
+{
+	// --- Save guests ---
+	{
+		std::ofstream file("Guests.txt");
+		if (!file) {
+			std::cerr << "Error: could not open guest.txt for writing\n";
+			return;
+		}
+		for (const Guest* g : vGuest) {
+			if (g) {
+				file << g->getID() << ","
+					<< g->getName() << ","
+					<< g->getNum() << "\n";
+			}
+		}
+	}
+
+	// --- Save rooms ---
+	{
+		std::ofstream file("Room.txt");
+		if (!file) {
+			std::cerr << "Error: could not open room.txt for writing\n";
+			return;
+		}
+		for (const Room* r : vRoom) {
+			if (r) {
+				file << r->GetID() << ","
+					<< r->GetPPN() << ","
+					<< r->IsOccupied() << ","
+					<< static_cast<int>(r->getAmenities()) << ","
+					<< static_cast<int>(r->getType()) << "\n";
+			}
+		}
+	}
+
+	// --- Save bookings ---
+	{
+		std::ofstream file("Bookings.txt");
+		if (!file) {
+			std::cerr << "Error: could not open bookings.txt for writing\n";
+			return;
+		}
+		for (const BookingInfo* b : vBookings) {
+			if (b) {
+				file << b->getID() << ","
+					<< b->getGuest() << ","
+					<< b->getRoom() << ","
+					<< b->getCheckIn() << ","
+					<< b->getCheckOut() << ","
+					<< b->getCost() << "\n";
+			}
+		}
+	}
+
+	std::cout << "All data saved successfully!\n";
+}
+
 int main()
 {
 	//initialise variables
@@ -330,11 +396,13 @@ int main()
 			break;
 		case 0: //exit the system
 			programRunning = false;
+			updateFiles(vGuest, vRoom, vBookings);
 			return 0;
 		default:
 			programRunning = false;
 			break;
 		}
 	}
+
 	return 0;
 }

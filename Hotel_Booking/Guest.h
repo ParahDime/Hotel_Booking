@@ -16,10 +16,10 @@ public:
 	~Guest();
 
 	void setName(string Name);
-	string getName();
+	 string getName() const;
 	void setNum(int number);
-	int getNum();
-	int getID();
+	int getNum() const;
+	int getID() const;
 	void setID(int idno);
 
 	friend std::istream& operator>>(std::istream& in, Guest& g);

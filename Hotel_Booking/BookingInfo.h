@@ -15,22 +15,22 @@ public:
 	BookingInfo(istream& file);
 	~BookingInfo();
 
-	int getID();
+	int getID() const;
 	void setID(int id);
 
-	int getGuest();
+	int getGuest() const;
 	void setGuest(int guest);
 
-	int getRoom();
+	int getRoom() const;
 	void setRoom(int room);
 
 	void setCheckIn(string in);
 	void setCheckOut(string out);
-	string getCheckIn();
-	string getCheckOut();
+	string getCheckIn() const;
+	string getCheckOut() const;
 
 	void setCost(int cost);
-	int getCost();
+	int getCost() const;
 
 	friend std::istream& operator>>(std::istream& in, BookingInfo& b);
 };

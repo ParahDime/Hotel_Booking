@@ -9,7 +9,7 @@ BookingInfo::~BookingInfo()
 {
 }
 
-int BookingInfo::getID()
+int BookingInfo::getID() const
 {
 	return int();
 }
@@ -19,7 +19,7 @@ void BookingInfo::setID(int id)
 	ID = id;
 }
 
-int BookingInfo::getGuest()
+int BookingInfo::getGuest() const
 {
 	return guestRef;
 }
@@ -29,7 +29,7 @@ void BookingInfo::setGuest(int guest)
 	guestRef = guest;
 }
 
-int BookingInfo::getRoom()
+int BookingInfo::getRoom() const
 {
 	return roomRef;
 }
@@ -49,12 +49,12 @@ void BookingInfo::setCheckOut(string out)
 	checkOut = out;
 }
 
-string BookingInfo::getCheckIn()
+string BookingInfo::getCheckIn() const
 {
 	return checkIn;
 }
 
-string BookingInfo::getCheckOut()
+string BookingInfo::getCheckOut() const
 {
 	return checkOut;
 }
@@ -64,7 +64,7 @@ void BookingInfo::setCost(int cost)
 	totalCost = cost;
 }
 
-int BookingInfo::getCost()
+int BookingInfo::getCost() const
 {
 	return totalCost;
 }
