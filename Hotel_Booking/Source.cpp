@@ -179,22 +179,78 @@ void bookInOut() {
 	return;
 }
 
-void getPrice() { //get the price of a room
+//
+//
+//***********TO DEBUG*************
+//
+//
+void getPrice(vector<Room*>& vRoom) { //get the price of a room
 	unique_ptr<bool> usingMenu = make_unique<bool>(true);
 	unique_ptr<int> subMenuOption = make_unique<int>();
+	
 
 	cout << "Please select an option\n";
 	cout << "[1] Check Availability\n [2] Check Price\n [0] Return to Menu";
 	*subMenuOption >> ReturnInt(0, 2);
-	do {
-	//input room
-	//input availability
+	switch (*subMenuOption) {
+	case 0:
+		return;
+	case 1:
+		cout << "\nRooms available:\n";
 
-	//check to see if room available
-	//if yes, calc price
-	//potential to go to create booking
-		*usingMenu = false;
-	} while (*usingMenu);
+		for (Room* r : vRoom) {
+			if (r && !r->IsOccupied()) {
+				cout << "Room ID: " << r->GetID()
+					<< " | Type: " << r->getType()
+					<< " | Price per night: $" << r->GetPPN() << "\n";
+			}
+		}
+	case 2:
+		cout << "\nEnter Room ID to check the price: ";
+		int roomNo;
+		cin >> roomNo;
+
+		Room* target = nullptr;
+
+		for (Room* r : vRoom) {
+			if (r && r->GetID() == id) {
+				target = r;
+				break;
+			}
+		}
+
+		if (!target) {
+			cout << "Room not found.\n";
+			continue;
+		}
+
+		cout << "Room " << target->GetID() << " costs £"
+			<< target->GetPPN() << " per night.\n";
+
+		int nights = 0;
+		cout << "How many nights? ";
+		nights = ReturnInt(1, 30);
+
+		float total = target->GetPPN() * nights;
+
+		cout << "Total price for " << nights
+			<< " night(s): £" << total << "\n";
+
+		if (!target->IsOccupied()) {
+			cout << "This room is currently available.\n";
+			cout << "Would you like to create a booking? (y/n): ";
+
+			char choice = ReturnChar();
+
+			if (choice == 'y') {
+				createBooking();
+				usingMenu = false;
+			}
+		}
+
+	default:
+		return;
+	}
 
 }
 
