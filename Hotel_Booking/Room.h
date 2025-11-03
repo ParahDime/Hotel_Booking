@@ -12,10 +12,10 @@ private:
 		Luxury = 3
 	};
 	enum type {
-		Single = 1,
-		Twin = 2,
-		Double = 3,
-		Executive = 4
+		Single = 0,
+		Twin = 1,
+		Double = 2,
+		Executive = 3
 	};
 
 	amenities Amenities;

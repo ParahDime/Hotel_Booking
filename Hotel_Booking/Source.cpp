@@ -179,6 +179,7 @@ void createBooking(vector<Room*>& vRoom) { //create a booking system for the roo
 	unique_ptr<string> name = make_unique<string>();
 	char inputOption = ' ';
 	string username;
+	Room* chosenRoom = nullptr;
 
 
 	cout << "Create a new booking\n";
@@ -192,6 +193,11 @@ void createBooking(vector<Room*>& vRoom) { //create a booking system for the roo
 		cout << "Please enter your name\n";
 
 		//check if account is on the system
+		/*
+		
+		
+		
+		*/
 
 	}
 	else if (*alreadyGuest == 'n') //if no, instead create a new account for them
@@ -201,7 +207,7 @@ void createBooking(vector<Room*>& vRoom) { //create a booking system for the roo
 
 		if (inputOption == 'y') //if y, function set up account
 		{
-			createAcc();
+			createAcc(); //THEN recall function AND place return afterwards
 		}
 		else {//if n, tell them can't create booking, return to home menu
 			cout << "Sorry, unless you have an account, you can't create a booking.\nPlease press any button to return to the menu";
@@ -225,16 +231,58 @@ void createBooking(vector<Room*>& vRoom) { //create a booking system for the roo
 		}
 	}
 
+	if (foundAny)
+	{
+		cout << "ID: 0 | Return";
+	}
+
 	if (!foundAny) {
 		cout << "Sorry, no rooms are available right now.\n";
 		return;
 	}
 
 	int chosenID;
-	cout << "\nEnter the Room ID you'd like to book: ";
-	cin >> chosenID;
+	cout << "\nEnter the Room ID you'd like to book  (0 to cancel): ";
 
-	Room* chosenRoom = nullptr;
+	//select room
+	while (true) {
+
+		// step 1: validate numeric input
+		if (!(std::cin >> chosenID)) {
+			std::cout << "Please enter a number.\n";
+			std::cin.clear();
+			std::cin.ignore(1000, '\n');
+			continue;
+		}
+
+		// step 2: allow cancel
+		if (chosenID == 0) {
+			std::cout << "Booking cancelled.\n";
+			return;
+		}
+
+		// step 3: search through vRoom
+		//*********************************************
+		//***Edit***
+		//*********************************************
+		chosenRoom = nullptr;
+		for (Room* r : vRoom) {
+			if (r && r->GetID() == chosenID && !r->IsOccupied()) {
+				chosenRoom = r;
+				break;      
+			}
+		}
+
+		// step 4: check if we found it
+		if (chosenRoom) {
+			break;         
+		}
+		else {
+			std::cout << "That room is either invalid or occupied. Try again.\n";
+		}
+	}
+
+	
 	for (Room* r : vRoom) {
 		if (r && r->GetID() == chosenID && !r->IsOccupied()) {
 			chosenRoom = r;
@@ -242,24 +290,11 @@ void createBooking(vector<Room*>& vRoom) { //create a booking system for the roo
 		}
 	}
 
-	if (!chosenRoom) {
-		cout << "Invalid or occupied room ID. Please try again.\n";
-		return;
-	}
-
 	chosenRoom->setOccupied();
 
 	cout << "\nBooking confirmed for Room " << chosenRoom->GetID() << ".\n";
-	cout << "Enjoy your stay at Hotel Paradise!\n";
-
-
-
-
-
-	//select room
-
-	//show dates available
-
+	cout << "Enjoy your stay at Hotel Paradise!\n [Press enter to continue]";
+	cin;
 }
 
 template <class S, class T> bool verifyFile(S& file, T& fileName) { //verify that a file exists
@@ -314,24 +349,6 @@ void updateFiles(vector<Guest*>& vGuest, vector<Room*>& vRoom, vector<BookingInf
 				file << g->getID() << ","
 					<< g->getName() << ","
 					<< g->getNum() << "\n";
-			}
-		}
-	}
-
-	// --- Save rooms ---
-	{
-		std::ofstream file("Room.txt");
-		if (!file) {
-			std::cerr << "Error: could not open room.txt for writing\n";
-			return;
-		}
-		for (const Room* r : vRoom) {
-			if (r) {
-				file << r->GetID() << ","
-					<< r->GetPPN() << ","
-					<< r->IsOccupied() << ","
-					<< r->getAmenities() << ","
-					<< static_cast<int>(r->getType()) << "\n";
 			}
 		}
 	}
