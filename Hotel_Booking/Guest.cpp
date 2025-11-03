@@ -2,6 +2,13 @@
 #include "Header.h"
 //#include "BookingInfo.h"
 
+Guest::Guest(string user, int id, int number)
+{
+	ID = id;
+	name = user;
+	callNum = number;
+}
+
 Guest::Guest(istream& file)
 {
 	file >> *this;

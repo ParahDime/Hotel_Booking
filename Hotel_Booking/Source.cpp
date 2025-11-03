@@ -42,6 +42,15 @@ int ReturnInt(int low, int high)
 	return *getInt;
 }
 
+Guest* findaGuest(const std::string& name, const vector<Guest*>& vGuest) {
+	for (Guest* g : vGuest) {
+		if (g && g->getName() == name) {
+			return g;
+		}
+	}
+	return nullptr;
+}
+
 ///
 ///	Functions for program maintenance
 /// 
@@ -56,15 +65,30 @@ void welcomeMessage() {
 	std::cout << "\033[0m"; // reset color
 }
 
-void createAcc() //create a user account
+Guest* createAcc(vector<Guest*>& vGuest) //create a user account
 {
-	//first name
+	cin.ignore(); // flush newline from previous input
+	//name
+	string name;
+	cout << "Enter your full name: ";
+	getline(cin, name);
 
-	//last name
+	if (name.empty()) {
+		cout << "Name cannot be empty.\n";
+		return nullptr;
+	}
 
 	//number to contact them
 
 	//also assign ID number to them (can be rand)
+	int newID = vGuest.size() + 1;
+	int callNum = 0;
+
+	Guest* newGuest = new Guest(name, newID, callNum);
+	vGuest.push_back(newGuest);
+
+	cout << "Account created! Your ID is: " << newID << "\n";
+	return newGuest;
 }
 
 //handles initial menu login
@@ -174,12 +198,13 @@ void getPrice() { //get the price of a room
 
 }
 
-void createBooking(vector<Room*>& vRoom) { //create a booking system for the room (modified)
+void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest) { //create a booking system for the room (modified)
 	unique_ptr<char> alreadyGuest = make_unique<char>();
 	unique_ptr<string> name = make_unique<string>();
 	char inputOption = ' ';
 	string username;
 	Room* chosenRoom = nullptr;
+	Guest* selectedGuest = nullptr;
 
 
 	cout << "Create a new booking\n";
@@ -190,33 +215,41 @@ void createBooking(vector<Room*>& vRoom) { //create a booking system for the roo
 	*alreadyGuest = ReturnChar();
 	if (*alreadyGuest == 'y') //if yes continue
 	{
-		cout << "Please enter your name\n";
+		cout << "Please enter your name (or press Enter to skip): ";
+		cin.ignore(); // clear leftover newline
+		getline(cin, username);
 
-		//check if account is on the system
-		/*
-		
-		
-		
-		*/
+		if (!username.empty()) {
+			selectedGuest = findaGuest(username, vGuest);
+
+			if (selectedGuest) {
+				cout << "Welcome back, " << selectedGuest->getName() << "!\n";
+			}
+			else {
+				cout << "No matching profile found.\n";
+			}
+		}
 
 	}
-	else if (*alreadyGuest == 'n') //if no, instead create a new account for them
+
+	if (*alreadyGuest == 'n' || !selectedGuest) //if no, instead create a new account for them
 	{
 		cout << "Sorry, we couldn't find your profile. Would you like to set one up? y/n";
 		inputOption >> ReturnChar();
 
 		if (inputOption == 'y') //if y, function set up account
 		{
-			createAcc(); //THEN recall function AND place return afterwards
+			selectedGuest = createAcc(vGuest); //THEN recall function AND place return afterwards
+			if (!selectedGuest) {
+				cout << "Failed to create an account. Returning to main menu...";
+				return;
+			}
 		}
 		else {//if n, tell them can't create booking, return to home menu
 			cout << "Sorry, unless you have an account, you can't create a booking.\nPlease press any button to return to the menu";
 			cin;
 			return;
 		}
-	}
-	else {
-		cout << "Invalid option";
 	}
 	
 	cout << "\n=== Available Rooms ===\n";
@@ -263,7 +296,7 @@ void createBooking(vector<Room*>& vRoom) { //create a booking system for the roo
 
 		// step 3: search through vRoom
 		//*********************************************
-		//***Edit***
+		//***Edit***Use an unordered map
 		//*********************************************
 		chosenRoom = nullptr;
 		for (Room* r : vRoom) {
@@ -291,6 +324,11 @@ void createBooking(vector<Room*>& vRoom) { //create a booking system for the roo
 	}
 
 	chosenRoom->setOccupied();
+
+	//EDIT add the list to the room class
+	//create new instance of the booking class
+	//input details
+	
 
 	cout << "\nBooking confirmed for Room " << chosenRoom->GetID() << ".\n";
 	cout << "Enjoy your stay at Hotel Paradise!\n [Press enter to continue]";
@@ -453,7 +491,7 @@ int main()
 			getPrice();
 			break;
 		case 3: //create booking
-			createBooking(vRoom);
+			createBooking(vRoom, vBookings, vGuest);
 			break;
 		case 0: //exit the system
 			programRunning = false;

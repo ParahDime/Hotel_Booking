@@ -12,6 +12,7 @@ private:
 
 public:
 	Guest() : ID(0), name(""), callNum(0) {};
+	Guest(string user, int id, int number);
 	Guest(istream& file);
 	~Guest();
 
