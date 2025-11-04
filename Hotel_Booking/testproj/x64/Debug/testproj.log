@@ -1,7 +1,7 @@
 ﻿  Source.cpp
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(105,18): warning C4552: '>>': result of expression not used
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(124,14): warning C4552: '>>': result of expression not used
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(96,7): warning C4101: 'confirmChar': unreferenced local variable
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(164,17): warning C4552: '>>': result of expression not used
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(206,15): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(84,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(128,18): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(147,14): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(220,15): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(374,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   testproj.vcxproj -> C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\x64\Debug\testproj.exe

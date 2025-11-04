@@ -112,12 +112,17 @@ void loginMenu(unique_ptr<int> &menuOption) {
 
 	return;
 }
+
+//
+//
+//***********TO DEBUG*************
+//
+//
 //Function for booking in out of hotel room
-void bookInOut() { 
+void checkInOut(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest) {
 	unique_ptr<bool> usingMenu = make_unique<bool>(true);
 	unique_ptr<int> subMenuOption = make_unique<int>();
 	unique_ptr<string> userName = make_unique<string>();
-	char confirmChar;
 
 	int nightStay = 0;
 
@@ -125,44 +130,68 @@ void bookInOut() {
 		cout << "Booking In / Booking Out";
 
 		cout << "Please select an option below";
-		cout << "[1] Book In \n[2] Book Out \n [0] Return to menu";
-		*subMenuOption >> ReturnInt(0, 2);
+		cout << "[1] Check In \n[2] Check Out \n [0] Return to menu";
+		*subMenuOption = ReturnInt(0, 2);
 
 		//get user info (do we have their deets)
+		cout << "Please input your name";
+		cin >> *userName;
 
-		//if acc proceed
-
-		//else send to get deets
-
-		//loop while not logged in
+		Guest* g = findaGuest(*userName, vGuest);
+		if (!g) {
+			cout << "No guest found with that name.\n";
+			break;
+		}
 
 		switch (*subMenuOption) {
 		case 1: //booking in
-			cout << "[1] : Booking In";// take guest details'
-			//ask for room type they want
-			cout << "What style of room are you looking for?";
-			cout << "\nSingle\nTwin\nDouble\nExecutive";
+			cout << "[1] : Checking In";// take guest details'
+			
+			// 2. find their active booking
+			Booking* b = findBookingByGuestID(g->getID(), vBooking);
+			if (!b) {
+				cout << "No active booking found under your name.\n";
+				break;
+			}
 
-			//ask how long
-			cout << "How many nights are you looking to stay? Maximum: 7";
-			nightStay >> ReturnInt(1, 7);
-			//check against list
+			// 3. find the room
+			Room* r = findRoomByID(b->getRoomID(), vRoom);
+			if (!r) {
+				cout << "Error: your booking refers to an invalid room.\n";
+				break;
+			}
 
-			//give details and 
-			//Room number, pricetotal, price per night
-
-			cout << "";
-			cout << "Total Stay: " << "8" << "days \nPrice per night £" << "" << "\nTotal Price £" << "";
-			cout << "Confirm? y/n\n";
-
-			//confirmation
+			// 4. check occupancy
+			if (r->IsOccupied()) {
+				cout << "This room is already marked as occupied.\n";
+			}
+			else {
+				r->setOccupied();
+				cout << "Check-in complete. Enjoy your stay!\n";
+			}
 
 			break;
 		case 2: 
-			cout << "[2] : Booking Out";//booking out
-			cout << "Please input your name";
-			cin >> *userName; //take guest info
+			cout << "[2] : Checking Out";//booking out
 			
+			// find their booking
+			Booking* b = findBookingByGuestID(g->getID(), vBooking);
+			if (!b) {
+				cout << "No active booking found.\n";
+				break;
+			}
+
+			// find room
+			Room* r = findRoomByID(b->getRoomID(), vRoom);
+			if (!r) {
+				cout << "Error: room not found.\n";
+				break;
+			}
+
+			// mark room as free
+			r->setOccupied();
+
+			cout << "Checked out. We hope you enjoyed your stay!\n";
 			//confirm room booking out (return)
 			break;
 		case 0:
@@ -179,80 +208,7 @@ void bookInOut() {
 	return;
 }
 
-//
-//
-//***********TO DEBUG*************
-//
-//
-void getPrice(vector<Room*>& vRoom) { //get the price of a room
-	unique_ptr<bool> usingMenu = make_unique<bool>(true);
-	unique_ptr<int> subMenuOption = make_unique<int>();
-	
 
-	cout << "Please select an option\n";
-	cout << "[1] Check Availability\n [2] Check Price\n [0] Return to Menu";
-	*subMenuOption >> ReturnInt(0, 2);
-	switch (*subMenuOption) {
-	case 0:
-		return;
-	case 1:
-		cout << "\nRooms available:\n";
-
-		for (Room* r : vRoom) {
-			if (r && !r->IsOccupied()) {
-				cout << "Room ID: " << r->GetID()
-					<< " | Type: " << r->getType()
-					<< " | Price per night: $" << r->GetPPN() << "\n";
-			}
-		}
-	case 2:
-		cout << "\nEnter Room ID to check the price: ";
-		int roomNo;
-		cin >> roomNo;
-
-		Room* target = nullptr;
-
-		for (Room* r : vRoom) {
-			if (r && r->GetID() == id) {
-				target = r;
-				break;
-			}
-		}
-
-		if (!target) {
-			cout << "Room not found.\n";
-			continue;
-		}
-
-		cout << "Room " << target->GetID() << " costs £"
-			<< target->GetPPN() << " per night.\n";
-
-		int nights = 0;
-		cout << "How many nights? ";
-		nights = ReturnInt(1, 30);
-
-		float total = target->GetPPN() * nights;
-
-		cout << "Total price for " << nights
-			<< " night(s): £" << total << "\n";
-
-		if (!target->IsOccupied()) {
-			cout << "This room is currently available.\n";
-			cout << "Would you like to create a booking? (y/n): ";
-
-			char choice = ReturnChar();
-
-			if (choice == 'y') {
-				createBooking();
-				usingMenu = false;
-			}
-		}
-
-	default:
-		return;
-	}
-
-}
 
 void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest) { //create a booking system for the room (modified)
 	unique_ptr<char> alreadyGuest = make_unique<char>();
@@ -389,6 +345,78 @@ void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector
 	cout << "\nBooking confirmed for Room " << chosenRoom->GetID() << ".\n";
 	cout << "Enjoy your stay at Hotel Paradise!\n [Press enter to continue]";
 	cin;
+}
+
+
+void getPrice(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest) { //get the price of a room
+	unique_ptr<bool> usingMenu = make_unique<bool>(true);
+	unique_ptr<int> subMenuOption = make_unique<int>();
+
+	int roomNo;
+	int nights = 0;
+	Room* target = nullptr;
+	float total = 0.0;
+
+	cout << "Please select an option\n";
+	cout << "[1] Check Availability\n [2] Check Price\n [0] Return to Menu";
+	*subMenuOption = ReturnInt(0, 2);
+	switch (*subMenuOption) {
+	case 0:
+		return;
+	case 1:
+		cout << "\nRooms available:\n";
+
+		for (Room* r : vRoom) {
+			if (r && !r->IsOccupied()) {
+				cout << "Room ID: " << r->GetID()
+					<< " | Type: " << r->getType()
+					<< " | Price per night: $" << r->GetPPN() << "\n";
+			}
+		}
+	case 2:
+		cout << "\nEnter Room ID to check the price: ";
+		
+		cin >> roomNo;
+
+		
+
+		for (Room* r : vRoom) {
+			if (r && r->GetID() == roomNo) {
+				target = r;
+				break;
+			}
+		}
+
+		if (!target) {
+			cout << "Room not found.\n";
+		}
+
+		cout << "Room " << target->GetID() << " costs £" << target->GetPPN() << " per night.\n";
+
+		
+		cout << "How many nights? ";
+		nights = ReturnInt(1, 30);
+
+		total = target->GetPPN() * nights;
+
+		cout << "Total price for " << nights << " night(s): £" << total << "\n";
+
+		if (!target->IsOccupied()) {
+			cout << "This room is currently available.\n";
+			cout << "Would you like to create a booking? (y/n): ";
+
+			char choice = ReturnChar();
+
+			if (choice == 'y') {
+				createBooking(vRoom, vBookings, vGuest);
+				*usingMenu = false;
+			}
+		}
+
+	default:
+		return;
+	}
+
 }
 
 template <class S, class T> bool verifyFile(S& file, T& fileName) { //verify that a file exists
@@ -541,10 +569,10 @@ int main()
 		
 		switch (*menuOption) {
 		case 1: //book in / out
-			bookInOut();
+			checkInOut(vRoom, vBookings, vGuest);
 			break;
 		case 2:	//get price
-			getPrice();
+			getPrice(vRoom, vBookings, vGuest);
 			break;
 		case 3: //create booking
 			createBooking(vRoom, vBookings, vGuest);
