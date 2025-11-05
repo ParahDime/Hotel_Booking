@@ -51,6 +51,25 @@ Guest* findaGuest(const std::string& name, const vector<Guest*>& vGuest) {
 	return nullptr;
 }
 
+BookingInfo* findBooking(int id, const vector<BookingInfo*>& vBooking)
+{
+	for (BookingInfo* g : vBooking) {
+		if (g && g->getGuest() == id) {
+			return g;
+		}
+	}
+	return nullptr;
+}
+
+Room* findRoom(int id, const vector<Room*>& vRoom)
+{
+	for (Room* g : vRoom) {
+		if (g && g->GetID() == id) {
+			return g;
+		}
+	}
+	return nullptr;
+}
 ///
 ///	Functions for program maintenance
 /// 
@@ -113,6 +132,77 @@ void loginMenu(unique_ptr<int> &menuOption) {
 	return;
 }
 
+bool checkIn(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest)
+{
+	unique_ptr<string> userName = make_unique<string>(); 
+	
+	cout << "Please input your name";
+	cin >> *userName;
+
+	Guest* g = findaGuest(*userName, vGuest);
+	if (!g) {
+		cout << "No guest found with that name.\n";
+		return false;
+	}
+
+	// 2. find their active booking
+	BookingInfo* b = findBooking(g->getID(), vBookings);
+	if (!b) {
+		cout << "No active booking found under your name.\n";
+		return false;
+	}
+
+	// 3. find the room
+	Room* r = findRoom(b->getRoom(), vRoom);
+	if (!r) {
+		cout << "Error: your booking refers to an invalid room.\n";
+		return false;
+	}
+
+	// 4. check occupancy
+	if (r->IsOccupied()) {
+		cout << "This room is already marked as occupied.\n";
+		return false;
+	}
+	else {
+		r->setOccupied();
+		
+	}
+
+	return true;
+}
+
+bool checkOut(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest)
+{
+	unique_ptr<string> userName = make_unique<string>();
+
+	cout << "Please input your name";
+	cin >> *userName;
+
+	Guest* g = findaGuest(*userName, vGuest);
+	if (!g) {
+		cout << "No guest found with that name.\n";
+		return false;
+	}
+
+	// find their booking
+	BookingInfo* b = findBooking(g->getID(), vBookings);
+	if (!b) {
+		cout << "No active booking found.\n";
+		return false;
+	}
+
+	// find room
+	Room* r = findRoom(b->getRoom(), vRoom);
+	if (!r) {
+		cout << "Error: room not found.\n";
+		return false;
+	}
+
+	// mark room as free
+	r->setOccupied();
+	return true;
+}
 //
 //
 //***********TO DEBUG*************
@@ -122,77 +212,39 @@ void loginMenu(unique_ptr<int> &menuOption) {
 void checkInOut(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest) {
 	unique_ptr<bool> usingMenu = make_unique<bool>(true);
 	unique_ptr<int> subMenuOption = make_unique<int>();
-	unique_ptr<string> userName = make_unique<string>();
-
+	
 	int nightStay = 0;
 
 	do {
-		cout << "Booking In / Booking Out";
+		cout << "Booking In / Booking Out\n";
 
 		cout << "Please select an option below";
 		cout << "[1] Check In \n[2] Check Out \n [0] Return to menu";
 		*subMenuOption = ReturnInt(0, 2);
 
-		//get user info (do we have their deets)
-		cout << "Please input your name";
-		cin >> *userName;
-
-		Guest* g = findaGuest(*userName, vGuest);
-		if (!g) {
-			cout << "No guest found with that name.\n";
-			break;
-		}
-
 		switch (*subMenuOption) {
 		case 1: //booking in
 			cout << "[1] : Checking In";// take guest details'
-			
-			// 2. find their active booking
-			Booking* b = findBookingByGuestID(g->getID(), vBooking);
-			if (!b) {
-				cout << "No active booking found under your name.\n";
-				break;
-			}
-
-			// 3. find the room
-			Room* r = findRoomByID(b->getRoomID(), vRoom);
-			if (!r) {
-				cout << "Error: your booking refers to an invalid room.\n";
-				break;
-			}
-
-			// 4. check occupancy
-			if (r->IsOccupied()) {
-				cout << "This room is already marked as occupied.\n";
-			}
-			else {
-				r->setOccupied();
+			if (checkIn(vRoom, vBookings, vGuest)) {
 				cout << "Check-in complete. Enjoy your stay!\n";
 			}
-
+			else {
+				cout << "Press any key to continue..";
+				cin;
+			}
+			*usingMenu = false;
 			break;
 		case 2: 
 			cout << "[2] : Checking Out";//booking out
-			
-			// find their booking
-			Booking* b = findBookingByGuestID(g->getID(), vBooking);
-			if (!b) {
-				cout << "No active booking found.\n";
-				break;
+			if (checkOut(vRoom, vBookings, vGuest)) {
+				cout << "Checked out. We hope you enjoyed your stay!\n";
 			}
-
-			// find room
-			Room* r = findRoomByID(b->getRoomID(), vRoom);
-			if (!r) {
-				cout << "Error: room not found.\n";
-				break;
+			else
+			{
+				cout << "Press enter to continue..";
+				cin;			
 			}
-
-			// mark room as free
-			r->setOccupied();
-
-			cout << "Checked out. We hope you enjoyed your stay!\n";
-			//confirm room booking out (return)
+			*usingMenu = false;
 			break;
 		case 0:
 			cout << "[0] : Return to Main Menu";

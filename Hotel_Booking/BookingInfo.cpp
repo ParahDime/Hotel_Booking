@@ -11,7 +11,7 @@ BookingInfo::~BookingInfo()
 
 int BookingInfo::getID() const
 {
-	return int();
+	return ID;
 }
 
 void BookingInfo::setID(int id)
