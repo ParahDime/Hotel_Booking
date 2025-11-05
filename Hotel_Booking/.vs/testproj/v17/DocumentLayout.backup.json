@@ -54,8 +54,7 @@
               "RelativeToolTip": "Bookings.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-11-05T19:02:34.908Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T19:02:34.908Z"
             },
             {
               "$type": "Document",
@@ -67,8 +66,7 @@
               "RelativeToolTip": "Guests.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-11-05T18:51:41.943Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T18:51:41.943Z"
             },
             {
               "$type": "Document",
@@ -80,8 +78,7 @@
               "RelativeToolTip": "Guest.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-03T20:18:48.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T20:18:48.901Z"
             },
             {
               "$type": "Document",
@@ -93,8 +90,7 @@
               "RelativeToolTip": "Guest.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-03T20:03:21.925Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T20:03:21.925Z"
             },
             {
               "$type": "Document",
@@ -106,8 +102,7 @@
               "RelativeToolTip": "Room.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-03T19:08:50.456Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T19:08:50.456Z"
             },
             {
               "$type": "Document",
@@ -119,8 +114,7 @@
               "RelativeToolTip": "BookingInfo.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAvwBQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-15T18:31:49.259Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-15T18:31:49.259Z"
             },
             {
               "$type": "Document",
@@ -132,8 +126,7 @@
               "RelativeToolTip": "BookingInfo.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-15T18:31:34.677Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-15T18:31:34.677Z"
             },
             {
               "$type": "Document",
@@ -143,7 +136,7 @@
               "RelativeDocumentMoniker": "Source.cpp",
               "ToolTip": "C:\\Users\\Dec\\Documents\\Portfolio projects\\Hotel_Booking\\Hotel_Booking\\Source.cpp",
               "RelativeToolTip": "Source.cpp",
-              "ViewState": "AgIAABQCAAAAAAAAAAAAADcCAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAADYBAAAAAAAAAAAAAGcBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-15T17:30:39.981Z",
               "EditorCaption": ""

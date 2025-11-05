@@ -262,7 +262,7 @@ void checkInOut(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Gu
 
 
 
-void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest) { //create a booking system for the room (modified)
+void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest, unordered_map < int, Room* > RoomIDs) { //create a booking system for the room (modified)
 	unique_ptr<char> alreadyGuest = make_unique<char>();
 	unique_ptr<string> name = make_unique<string>();
 	char inputOption = ' ';
@@ -362,36 +362,27 @@ void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector
 		//*********************************************
 		//***Edit***Use an unordered map
 		//*********************************************
-		chosenRoom = nullptr;
-		for (Room* r : vRoom) {
-			if (r && r->GetID() == chosenID && !r->IsOccupied()) {
-				chosenRoom = r;
-				break;      
-			}
+		auto it = RoomIDs.find(chosenID);
+
+		if (it == RoomIDs.end()) {
+			std::cout << "No room with that ID exists. Try again.\n";
+			continue;
 		}
 
-		// step 4: check if we found it
-		if (chosenRoom) {
-			break;         
-		}
-		else {
-			std::cout << "That room is either invalid or occupied. Try again.\n";
-		}
-	}
+		Room* room = it->second;
 
-	
-	for (Room* r : vRoom) {
-		if (r && r->GetID() == chosenID && !r->IsOccupied()) {
-			chosenRoom = r;
-			break;
+		if (room->IsOccupied()) {
+			std::cout << "Room is already occupied. Try again.\n";
+			continue;
 		}
+
+		chosenRoom = room;
+		break;
 	}
 
 	chosenRoom->setOccupied();
 
-	//EDIT add the list to the room class
 	//create new instance of the booking class
-	//input details
 	
 
 	cout << "\nBooking confirmed for Room " << chosenRoom->GetID() << ".\n";
@@ -571,12 +562,6 @@ int main()
 	unordered_map < int, BookingInfo* > BookingIDs;//hash for booking ID
 	unordered_map < int, Room* > RoomIDs;//hash for room ID
 
-	//queue for guests if rooms are full
-	//process check in/out in fifo stack
-
-	//set for room ids available
-	//can also be used for VIP guests / put into unordered map guest
-
 	//initialise classes
 
 	//read in files
@@ -633,7 +618,7 @@ int main()
 			getPrice(vRoom, vBookings, vGuest);
 			break;
 		case 3: //create booking
-			createBooking(vRoom, vBookings, vGuest);
+			createBooking(vRoom, vBookings, vGuest, RoomIDs);
 			break;
 		case 0: //exit the system
 			programRunning = false;

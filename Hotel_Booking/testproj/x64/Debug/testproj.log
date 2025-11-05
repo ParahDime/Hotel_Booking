@@ -1,5 +1,5 @@
 ﻿  Source.cpp
 C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(103,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(293,15): warning C4552: '>>': result of expression not used
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(443,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(302,15): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(452,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   testproj.vcxproj -> C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\x64\Debug\testproj.exe
