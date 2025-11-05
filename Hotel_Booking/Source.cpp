@@ -488,24 +488,30 @@ template <class S, class T> bool verifyFile(S& file, T& fileName) { //verify tha
 ///
 /// Input files into the program
 /// 
-void inputGuest(ifstream& file, vector<Guest*>& vGuest) { 
+void inputGuest(ifstream& file, vector<Guest*>& vGuest, unordered_map < int, Guest* > GuestIDs) {
 	Guest temp;
 	while (file >> temp) { 
+		Guest* g = new Guest(temp);
 		vGuest.push_back(new Guest(temp));
+		GuestIDs[g->getID()] = g;
 	}
 }
 
-void inputRoom(ifstream& file, vector<Room*>& vRoom) {
+void inputRoom(ifstream& file, vector<Room*>& vRoom, unordered_map < int, Room* > RoomIDs) {
 	Room temp;
 	while (file >> temp) {
+		Room* r = new Room(temp);
 		vRoom.push_back(new Room(temp));
+		RoomIDs[r->GetID()] = r;
 	}
 }
 
-void inputBookings(ifstream& file, vector<BookingInfo*>& vBookings) {
+void inputBookings(ifstream& file, vector<BookingInfo*>& vBookings, unordered_map < int, BookingInfo* > BookingIDs) {
 	BookingInfo temp;
 	while (file >> temp) {
+		BookingInfo* b = new BookingInfo(temp);
 		vBookings.push_back(new BookingInfo(temp));
+		BookingIDs[b->getID()] = b;
 	}
 }
 
@@ -561,9 +567,9 @@ int main()
 	vector<Room*> vRoom = {};
 	vector<BookingInfo*> vBookings = {};
 
-	unordered_map < int, string > GuestIDs;//hash for guests by ID
-	unordered_map < int, string > BookingIDs;//hash for booking ID
-	unordered_map < int, string > RoomIDs;//hash for room ID
+	unordered_map < int, Guest* > GuestIDs;//hash for guests by ID
+	unordered_map < int, BookingInfo* > BookingIDs;//hash for booking ID
+	unordered_map < int, Room* > RoomIDs;//hash for room ID
 
 	//queue for guests if rooms are full
 	//process check in/out in fifo stack
@@ -580,7 +586,7 @@ int main()
 	ifstream nameFile(*fileName);
 	if (verifyFile(nameFile, fileName))
 	{
-		inputGuest(nameFile, vGuest);
+		inputGuest(nameFile, vGuest, GuestIDs);
 		Test();
 	}
 	else
@@ -594,7 +600,7 @@ int main()
 	ifstream roomFile(*fileName);
 	if (verifyFile(roomFile, fileName))
 	{
-		inputRoom(roomFile, vRoom);
+		inputRoom(roomFile, vRoom, RoomIDs);
 	}
 	else
 	{
@@ -606,7 +612,7 @@ int main()
 	ifstream bookingFile(*fileName);
 	if (verifyFile(bookingFile, fileName))
 	{
-		inputBookings(bookingFile, vBookings);
+		inputBookings(bookingFile, vBookings, BookingIDs);
 	}
 	else
 	{
