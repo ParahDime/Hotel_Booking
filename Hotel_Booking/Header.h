@@ -9,6 +9,7 @@
 #include <memory>
 #include <random>
 #include <unordered_map>
+#include <ctime>
 
 using std::string;
 using std::ifstream;
@@ -22,4 +23,5 @@ using std::unique_ptr;
 using std::make_unique;
 using std::unordered_map;
 using std::getline;
+using namespace std::chrono;
 #pragma once

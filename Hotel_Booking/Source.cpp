@@ -74,7 +74,6 @@ Room* findRoom(int id, const vector<Room*>& vRoom)
 ///	Functions for program maintenance
 /// 
 
-
 void welcomeMessage() {
 	//stylised welcome message
 	std::cout << "\033[1;33m"; // bright yellow
@@ -262,13 +261,15 @@ void checkInOut(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Gu
 
 
 
-void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest, unordered_map < int, Room* > RoomIDs) { //create a booking system for the room (modified)
+void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest, unordered_map < int, Room* > RoomIDs, 
+			unordered_map < int, BookingInfo* > BookingIDs) { //create a booking system for the room (modified)
 	unique_ptr<char> alreadyGuest = make_unique<char>();
 	unique_ptr<string> name = make_unique<string>();
 	char inputOption = ' ';
 	string username;
 	Room* chosenRoom = nullptr;
 	Guest* selectedGuest = nullptr;
+	int nights = 0;
 
 
 	cout << "Create a new booking\n";
@@ -357,11 +358,6 @@ void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector
 			std::cout << "Booking cancelled.\n";
 			return;
 		}
-
-		// step 3: search through vRoom
-		//*********************************************
-		//***Edit***Use an unordered map
-		//*********************************************
 		auto it = RoomIDs.find(chosenID);
 
 		if (it == RoomIDs.end()) {
@@ -380,9 +376,38 @@ void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector
 		break;
 	}
 
+	while (true) {
+		std::cout << "How many nights would you like to stay? (1–7): ";
+
+		if (!(std::cin >> nights)) {
+			std::cout << "Please enter a number.\n";
+			std::cin.clear();
+			std::cin.ignore(1000, '\n');
+			continue;
+		}
+
+		if (nights < 1 || nights > 7) {
+			std::cout << "Nights must be between 1 and 7.\n";
+			continue;
+		}
+		break;
+	}
+
 	chosenRoom->setOccupied();
 
 	//create new instance of the booking class
+
+	BookingInfo* newBooking = new BookingInfo();
+
+	newBooking->setID(21);
+	newBooking->setGuest(selectedGuest->getID());
+	newBooking->setRoom(chosenRoom->GetID());
+	newBooking->setCheckIn("now");
+	newBooking->setCheckOut("now + 7");
+	newBooking->setCost(nights);
+
+	vBookings.push_back(newBooking);
+	BookingIDs[newBooking->getID()] = newBooking;
 	
 
 	cout << "\nBooking confirmed for Room " << chosenRoom->GetID() << ".\n";
@@ -391,7 +416,8 @@ void createBooking(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector
 }
 
 
-void getPrice(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest) { //get the price of a room
+void getPrice(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Guest*>& vGuest, unordered_map < int, Room* > RoomIDs,
+	unordered_map < int, BookingInfo* > BookingIDs) { //get the price of a room
 	unique_ptr<bool> usingMenu = make_unique<bool>(true);
 	unique_ptr<int> subMenuOption = make_unique<int>();
 
@@ -451,7 +477,7 @@ void getPrice(vector<Room*>& vRoom, vector<BookingInfo*>& vBookings, vector<Gues
 			char choice = ReturnChar();
 
 			if (choice == 'y') {
-				createBooking(vRoom, vBookings, vGuest);
+				createBooking(vRoom, vBookings, vGuest, RoomIDs, BookingIDs);
 				*usingMenu = false;
 			}
 		}
@@ -615,10 +641,10 @@ int main()
 			checkInOut(vRoom, vBookings, vGuest);
 			break;
 		case 2:	//get price
-			getPrice(vRoom, vBookings, vGuest);
+			getPrice(vRoom, vBookings, vGuest, RoomIDs, BookingIDs);
 			break;
 		case 3: //create booking
-			createBooking(vRoom, vBookings, vGuest, RoomIDs);
+			createBooking(vRoom, vBookings, vGuest, RoomIDs, BookingIDs);
 			break;
 		case 0: //exit the system
 			programRunning = false;

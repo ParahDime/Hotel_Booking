@@ -1,5 +1,14 @@
-﻿  Source.cpp
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(103,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(302,15): warning C4552: '>>': result of expression not used
-C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(452,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  BookingInfo.cpp
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\BookingInfo.cpp(64,14): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\BookingInfo.cpp(69,9): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
+  Guest.cpp
+  Room.cpp
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Room.cpp(24,9): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Room.cpp(31,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Room.cpp(34,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Source.cpp
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(102,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(303,15): warning C4552: '>>': result of expression not used
+C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\Source.cpp(469,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   testproj.vcxproj -> C:\Users\Dec\Documents\Portfolio projects\Hotel_Booking\Hotel_Booking\x64\Debug\testproj.exe
